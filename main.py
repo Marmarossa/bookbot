@@ -1,12 +1,13 @@
-from collections import OrderedDict
-
 def main():
     book_path = "books/frankenstein.txt"
     text = get_book_text(book_path)
     num_words = get_word_count(text)
     print(f"There are {num_words} words in this text")
     num_letters = get_letter_count(text)
-    print(num_letters)
+    
+    print()
+    for item in num_letters:
+        print(f"The {item['letter']} character was found {item['num']} times")
 
 def get_book_text(path):
     with open(path) as f:
@@ -33,11 +34,12 @@ def get_letter_count(text):
             else:
                 dict_letters[letter] = 1
 
-    ordered_dict = OrderedDict(sorted(dict_letters.items(), key=lambda t: t[0]))
-
+    order_dict = []
+    for lt in dict_letters:
+        order_dict.append({"letter": lt, "num":dict_letters[lt]})
+    order_dict.sort(reverse=True, key = sort_on)
     
-    return ordered_dict
+    return order_dict
         
-
 
 main()
