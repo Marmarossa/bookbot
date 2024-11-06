@@ -14,7 +14,6 @@ def print_report(path):
         print(f"The {item['char']} character was found {item['num']} times")
     print("---End report---")
 
-
 def sort_on(d):
     return d["num"]
 
